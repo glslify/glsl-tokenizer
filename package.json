@@ -1,0 +1,23 @@
+{
+  "name": "glsl-tokenizer",
+  "version": "0.0.0",
+  "description": "r/w stream of glsl tokens",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/glsl-tokenizer.git"
+  },
+  "keywords": [
+    "glsl",
+    "tokenizer",
+    "stream"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT"
+}
