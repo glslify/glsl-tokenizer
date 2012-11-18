@@ -33,19 +33,19 @@ emits 'data' events whenever a token is parsed with a token object as output.
 
 ```
 
-The available token type are:
+The available token types are:
 
-* `BLOCK_COMMENT`: `/* ... */`
-* `LINE_COMMENT`: `// ... \n`
-* `PREPROCESSOR`: `# ... \n`
-* `OPERATOR`: Any operator. If it looks like punctuation, it's an operator.
-* `INTEGER`
-* `FLOAT`: Optionally suffixed with `f`
-* `IDENT`: User defined identifier.
-* `BUILTIN`: Builtin function
-* `KEYWORD`
-* `WHITESPACE`
-* `EOF`: emitted on `end`; data will === `'(eof)'.
+* `block-comment`: `/* ... */`
+* `line-comment`: `// ... \n`
+* `preprocessor`: `# ... \n`
+* `operator`: Any operator. If it looks like punctuation, it's an operator.
+* `integer`
+* `float`: Optionally suffixed with `f`
+* `ident`: User defined identifier.
+* `builtin`: Builtin function
+* `keyword`
+* `whitespace`
+* `eof`: emitted on `end`; data will === `'(eof)'`.
 
 # License
 
