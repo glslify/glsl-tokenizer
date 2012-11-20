@@ -45,6 +45,7 @@ function tokenize() {
   var stream = create_stream()
   stream.write = write
   stream.end = end
+  stream.destroy = destroy
 
   var i = 0
     , total = 0
@@ -73,15 +74,15 @@ function tokenize() {
     input = chunk.toString()
     len = input.length
     while(c = input[i], i < len) switch(mode) {
-      case BLOCK_COMMENT: i = block_comment(), last = c; break
-      case LINE_COMMENT: i = line_comment(), last = c; break
-      case PREPROCESSOR: i = preprocessor(), last = c; break 
-      case OPERATOR: i = operator(), last = c; break
-      case INTEGER: i = integer(), last = c; break
-      case FLOAT: i = decimal(), last = c; break
-      case TOKEN: i = readtoken(), last = c; break
-      case WHITESPACE: i = whitespace(), last = c; break
-      case NORMAL: i = normal(), last = c; break
+      case BLOCK_COMMENT: i = block_comment(); break
+      case LINE_COMMENT: i = line_comment(); break
+      case PREPROCESSOR: i = preprocessor(); break 
+      case OPERATOR: i = operator(); break
+      case INTEGER: i = integer(); break
+      case FLOAT: i = decimal(); break
+      case TOKEN: i = readtoken(); break
+      case WHITESPACE: i = whitespace(); break
+      case NORMAL: i = normal(); break
     }
 
     total += chunk.length
@@ -99,18 +100,26 @@ function tokenize() {
     stream.emit('close')
   }
 
+  function destroy() {
+    this.write = function(){}
+    this.writable = false
+    this.emit('close')
+  }
+
   function normal() {
     content = content.length ? [] : content
-
-    if(last === '/' && c === '/') {
-      start = total + i - 1
-      mode = LINE_COMMENT
-      return i + 1
-    }
 
     if(last === '/' && c === '*') {
       start = total + i - 1
       mode = BLOCK_COMMENT
+      last = c
+      return i + 1
+    }
+
+    if(last === '/' && c === '/') {
+      start = total + i - 1
+      mode = LINE_COMMENT
+      last = c
       return i + 1
     }
 
@@ -141,6 +150,7 @@ function tokenize() {
       return i
     }
     content.push(c)
+    last = c
     return i + 1
   }
 
@@ -151,6 +161,7 @@ function tokenize() {
       return i
     }
     content.push(c)
+    last = c
     return i + 1
   }
 
@@ -165,12 +176,18 @@ function tokenize() {
     }
 
     content.push(c)
+    last = c
     return i + 1
   }
 
   function operator() {
     if(last === '.' && /\d/.test(c)) {
       mode = FLOAT
+      return i
+    }
+
+    if(last === '/' && c === '*') {
+      mode = BLOCK_COMMENT
       return i
     }
 
@@ -182,6 +199,7 @@ function tokenize() {
     }
 
     content.push(c)
+    last = c
     return i + 1
   }
 
@@ -208,6 +226,7 @@ function tokenize() {
     if(c === '.') {
       content.push(c)
       mode = FLOAT
+      last = c
       return i + 1
     }
 
@@ -218,12 +237,14 @@ function tokenize() {
     }
 
     content.push(c)
+    last = c
     return i + 1
   }
 
   function decimal() {
     if(c === 'f') {
       content.push(c)
+      last = c
       i += 1
     }
     if(/[^\d]/.test(c)) {
@@ -232,6 +253,7 @@ function tokenize() {
       return i
     }
     content.push(c)
+    last = c
     return i + 1
   }
 
@@ -250,6 +272,7 @@ function tokenize() {
       return i
     }
     content.push(c)
+    last = c
     return i + 1
   }
 }
