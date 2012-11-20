@@ -191,6 +191,11 @@ function tokenize() {
       return i
     }
 
+    if(last === '/' && c === '/') {
+      mode = LINE_COMMENT
+      return i
+    }
+
     var is_composite_operator = content.length === 2 && c !== '='
     if(/[\w_\d\s]/.test(c) || is_composite_operator) {
       while(determine_operator(content));
