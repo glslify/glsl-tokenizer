@@ -196,6 +196,13 @@ function tokenize() {
       return i
     }
 
+    if(last === '*' && c === '.') {
+      while(determine_operator(content)) process.stdout.write('.');
+      
+      mode = FLOAT
+      return i
+    }
+
     var is_composite_operator = content.length === 2 && c !== '='
     if(/[\w_\d\s]/.test(c) || is_composite_operator) {
       while(determine_operator(content));
