@@ -19,6 +19,7 @@ var NORMAL = 999          // <-- never emitted
   , KEYWORD = 8
   , WHITESPACE = 9
   , EOF = 10 
+  , HEX = 11
 
 var map = [
     'block-comment'
@@ -32,6 +33,7 @@ var map = [
   , 'keyword'
   , 'whitespace'
   , 'eof'
+  , 'integer'
 ]
 
 function create_stream() {
@@ -79,6 +81,7 @@ function tokenize() {
       case PREPROCESSOR: i = preprocessor(); break 
       case OPERATOR: i = operator(); break
       case INTEGER: i = integer(); break
+      case HEX: i = hex(); break
       case FLOAT: i = decimal(); break
       case TOKEN: i = readtoken(); break
       case WHITESPACE: i = whitespace(); break
@@ -203,6 +206,13 @@ function tokenize() {
       return i
     }
 
+    if(c === ';') {
+      if(content.length) while(determine_operator(content));
+      token(c)
+      mode = NORMAL
+      return i + 1
+    }
+
     var is_composite_operator = content.length === 2 && c !== '='
     if(/[\w_\d\s]/.test(c) || is_composite_operator) {
       while(determine_operator(content));
@@ -234,10 +244,36 @@ function tokenize() {
     } while(1)
   }
 
+  function hex() {
+    if(/[^a-fA-F0-9]/.test(c)) {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+
+    content.push(c)
+    last = c
+    return i + 1    
+  }
+
   function integer() {
     if(c === '.') {
       content.push(c)
       mode = FLOAT
+      last = c
+      return i + 1
+    }
+
+    if(/[eE]/.test(c)) {
+      content.push(c)
+      mode = FLOAT
+      last = c
+      return i + 1
+    }
+
+    if(c === 'x' && content.length === 1 && content[0] === '0') {
+      mode = HEX
+      content.push(c)
       last = c
       return i + 1
     }
@@ -259,6 +295,13 @@ function tokenize() {
       last = c
       i += 1
     }
+
+    if(/[eE]/.test(c)) {
+      content.push(c)
+      last = c
+      return i + 1
+    }
+
     if(/[^\d]/.test(c)) {
       token(content.join(''))
       mode = NORMAL

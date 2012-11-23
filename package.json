@@ -1,6 +1,6 @@
 {
   "name": "glsl-tokenizer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "r/w stream of glsl tokens",
   "main": "index.js",
   "directories": {
