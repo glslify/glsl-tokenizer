@@ -196,7 +196,7 @@ function tokenize() {
       return i
     }
 
-    if(last === '*' && c === '.') {
+    if(c === '.' && content.length) {
       while(determine_operator(content)) process.stdout.write('.');
       
       mode = FLOAT
