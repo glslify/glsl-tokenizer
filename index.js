@@ -57,6 +57,7 @@ function tokenize() {
     , content = []
     , token_idx = 0
     , token_offs = 0
+    , line = 1
     , start = 0
     , isnum = false
     , isoperator = false
@@ -67,7 +68,12 @@ function tokenize() {
 
   function token(data) {
     if(data.length) {
-      stream.emit('data', {type:map[mode], data: data, position: start})
+      stream.emit('data', {
+        type:map[mode]
+      , data: data
+      , position: start
+      , line: line
+      })
     }
   }
 
@@ -147,6 +153,8 @@ function tokenize() {
   }
 
   function whitespace() {
+    if(c === '\n') ++line
+
     if(/[^\s]/g.test(c)) {
       token(content.join(''))
       mode = NORMAL
@@ -158,6 +166,8 @@ function tokenize() {
   }
 
   function preprocessor() {
+    if(c === '\n') ++line
+
     if(c === '\n' && last !== '\\') {
       token(content.join(''))
       mode = NORMAL
@@ -174,9 +184,13 @@ function tokenize() {
 
   function block_comment() {
     if(c === '/' && last === '*') {
+      content.push(c)
       token(content.join(''))
       mode = NORMAL
+      return i + 1
     }
+
+    if(c === '\n') ++line
 
     content.push(c)
     last = c
