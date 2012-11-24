@@ -102,6 +102,11 @@ function tokenize() {
       write(chunk)
     }
 
+    if(content.length) {
+      token(content.join(''))
+    }
+
+
     mode = EOF
     token('(eof)')
     stream.readable = false
