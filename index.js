@@ -58,8 +58,8 @@ function tokenize() {
 
   function token(data) {
     if(data.length) {
-      stream.emit('data', {
-        type:map[mode]
+      stream.queue({
+        type: map[mode]
       , data: data
       , position: start
       , line: line
@@ -71,7 +71,8 @@ function tokenize() {
     i = 0
     input += chunk.toString()
     len = input.length
-    while(c = input[i], i < len && !stream.paused) switch(mode) {
+
+    while(c = input[i], i < len) switch(mode) {
       case BLOCK_COMMENT: i = block_comment(); break
       case LINE_COMMENT: i = line_comment(); break
       case PREPROCESSOR: i = preprocessor(); break 
@@ -84,22 +85,19 @@ function tokenize() {
       case NORMAL: i = normal(); break
     }
 
-    total += chunk.length
+    total += i
     input = input.slice(i)
   } 
 
   function end(chunk) {
-    if(arguments.length) {
-      write(chunk)
-    }
-
     if(content.length) {
       token(content.join(''))
     }
 
-
     mode = EOF
     token('(eof)')
+
+    stream.queue(null)
   }
 
   function normal() {
