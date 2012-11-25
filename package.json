@@ -1,6 +1,6 @@
 {
   "name": "glsl-tokenizer",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "r/w stream of glsl tokens",
   "main": "index.js",
   "directories": {
@@ -19,5 +19,8 @@
     "stream"
   ],
   "author": "Chris Dickinson <chris@neversaw.us>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "through": "X.X.X"
+  }
 }

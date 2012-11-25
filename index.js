@@ -1,6 +1,6 @@
 module.exports = tokenize
 
-var Stream = require('stream').Stream
+var through = require('through')
 
 var literals = require('./lib/literals')
   , operators = require('./lib/operators')
@@ -36,18 +36,8 @@ var map = [
   , 'integer'
 ]
 
-function create_stream() {
-  var stream = new Stream
-  stream.readable =
-  stream.writable = true
-  return stream
-}
-
 function tokenize() {
-  var stream = create_stream()
-  stream.write = write
-  stream.end = end
-  stream.destroy = destroy
+  var stream = through(write, end)
 
   var i = 0
     , total = 0
@@ -61,7 +51,7 @@ function tokenize() {
     , start = 0
     , isnum = false
     , isoperator = false
-    , input
+    , input = ''
     , len
 
   return stream
@@ -79,9 +69,9 @@ function tokenize() {
 
   function write(chunk) {
     i = 0
-    input = chunk.toString()
+    input += chunk.toString()
     len = input.length
-    while(c = input[i], i < len) switch(mode) {
+    while(c = input[i], i < len && !stream.paused) switch(mode) {
       case BLOCK_COMMENT: i = block_comment(); break
       case LINE_COMMENT: i = line_comment(); break
       case PREPROCESSOR: i = preprocessor(); break 
@@ -95,6 +85,7 @@ function tokenize() {
     }
 
     total += chunk.length
+    input = input.slice(i)
   } 
 
   function end(chunk) {
@@ -112,12 +103,6 @@ function tokenize() {
     stream.readable = false
     stream.closed = true
     stream.emit('close')
-  }
-
-  function destroy() {
-    this.write = function(){}
-    this.writable = false
-    this.emit('close')
   }
 
   function normal() {
