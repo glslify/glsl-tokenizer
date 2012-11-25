@@ -100,9 +100,6 @@ function tokenize() {
 
     mode = EOF
     token('(eof)')
-    stream.readable = false
-    stream.closed = true
-    stream.emit('close')
   }
 
   function normal() {
