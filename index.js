@@ -205,7 +205,7 @@ function tokenize() {
       return i
     }
 
-    if(c === ';') {
+    if(c === ';' || c === ')' || c === '(') {
       if(content.length) while(determine_operator(content));
       token(c)
       mode = NORMAL
