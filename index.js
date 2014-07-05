@@ -48,6 +48,7 @@ function tokenize() {
     , token_idx = 0
     , token_offs = 0
     , line = 1
+    , col = 0
     , start = 0
     , isnum = false
     , isoperator = false
@@ -63,6 +64,7 @@ function tokenize() {
       , data: data
       , position: start
       , line: line
+      , column: col
       })
     }
   }
@@ -138,7 +140,12 @@ function tokenize() {
   }
 
   function whitespace() {
-    if(c === '\n') ++line
+    if(c === '\n') {
+      ++line
+      col = 0
+    } else {
+      ++col
+    }
 
     if(/[^\s]/g.test(c)) {
       token(content.join(''))
