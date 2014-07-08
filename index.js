@@ -74,17 +74,30 @@ function tokenize() {
     input += chunk.toString()
     len = input.length
 
-    while(c = input[i], i < len) switch(mode) {
-      case BLOCK_COMMENT: i = block_comment(); break
-      case LINE_COMMENT: i = line_comment(); break
-      case PREPROCESSOR: i = preprocessor(); break 
-      case OPERATOR: i = operator(); break
-      case INTEGER: i = integer(); break
-      case HEX: i = hex(); break
-      case FLOAT: i = decimal(); break
-      case TOKEN: i = readtoken(); break
-      case WHITESPACE: i = whitespace(); break
-      case NORMAL: i = normal(); break
+    var last
+
+    while(c = input[i], i < len) {
+      last = i
+
+      switch(mode) {
+        case BLOCK_COMMENT: i = block_comment(); break
+        case LINE_COMMENT: i = line_comment(); break
+        case PREPROCESSOR: i = preprocessor(); break
+        case OPERATOR: i = operator(); break
+        case INTEGER: i = integer(); break
+        case HEX: i = hex(); break
+        case FLOAT: i = decimal(); break
+        case TOKEN: i = readtoken(); break
+        case WHITESPACE: i = whitespace(); break
+        case NORMAL: i = normal(); break
+      }
+
+      if(last !== i) {
+        switch(input[last]) {
+          case '\n': col = 0; ++line; break
+          default: ++col; break
+        }
+      }
     }
 
     total += i
@@ -140,13 +153,6 @@ function tokenize() {
   }
 
   function whitespace() {
-    if(c === '\n') {
-      ++line
-      col = 0
-    } else {
-      ++col
-    }
-
     if(/[^\s]/g.test(c)) {
       token(content.join(''))
       mode = NORMAL
@@ -158,8 +164,6 @@ function tokenize() {
   }
 
   function preprocessor() {
-    if(c === '\n') ++line
-
     if(c === '\n' && last !== '\\') {
       token(content.join(''))
       mode = NORMAL
@@ -181,8 +185,6 @@ function tokenize() {
       mode = NORMAL
       return i + 1
     }
-
-    if(c === '\n') ++line
 
     content.push(c)
     last = c
