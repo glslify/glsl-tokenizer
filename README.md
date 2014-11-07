@@ -1,36 +1,42 @@
 # glsl-tokenizer
 
-a [readable / writable stream](https://github.com/dominictarr/stream-spec#through-sync-writable-and-readable-aka-filter) that maps input to glsl tokens, if possible.
+Maps GLSL string data into GLSL tokens, either synchronously or using a
+streaming API.
 
-```javascript
+``` javascript
+var tokenString = require('glsl-tokenizer/string')
+var tokenStream = require('glsl-tokenizer/stream')
+var fs = require('fs')
 
-  var fs = require('fs')
-    , tokens = require('glsl-tokenizer')()
+// Synchronously:
+var tokens = tokenString(fs.readFileSync('some.glsl'))
 
-  fs.createReadStream('some.glsl')
-    .pipe(tokens)
-    .on('data', function(token) {
-      console.log(token.data, token.position, token.type)
-    })
-
+// Streaming API:
+fs.createReadStream('some.glsl')
+  .pipe(tokenStream())
+  .on('data', function(token) {
+    console.log(token.data, token.position, token.type)
+  })
 ```
 
 # API
 
-### tokens = require('glsl-tokenizer')()
+## tokens = require('glsl-tokenizer/string')(src)
 
-return a tokenizer stream instance.
+Returns an array of `tokens` given the GLSL source string `src`
 
-emits 'data' events whenever a token is parsed with a token object as output.
+## stream = require('glsl-tokenizer/stream')()
 
-# tokens
+Emits 'data' events whenever a token is parsed with a token object as output.
+
+# Tokens
 
 ```javascript
-
 { 'type': TOKEN_TYPE
 , 'data': "string of constituent data"
-, 'position': integer position within the data stream }
-
+, 'position': integer position within the GLSL source
+, 'line': line number within the GLSL source
+, 'column': column number within the GLSL source }
 ```
 
 The available token types are:
@@ -39,14 +45,14 @@ The available token types are:
 * `line-comment`: `// ... \n`
 * `preprocessor`: `# ... \n`
 * `operator`: Any operator. If it looks like punctuation, it's an operator.
-* `integer`
 * `float`: Optionally suffixed with `f`
 * `ident`: User defined identifier.
-* `builtin`: Builtin function
-* `keyword`
+* `builtin`: Builtin function.
+* `eof`: Emitted on `end`; data will === `'(eof)'`.
+* `integer`
 * `whitespace`
-* `eof`: emitted on `end`; data will === `'(eof)'`.
+* `keyword`
 
 # License
 
-MIT
+MIT, see [LICENSE.md](LICENSE.md) for further information.

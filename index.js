@@ -1,14 +1,12 @@
 module.exports = tokenize
 
-var through = require('through')
-
 var literals = require('./lib/literals')
   , operators = require('./lib/operators')
   , builtins = require('./lib/builtins')
 
 var NORMAL = 999          // <-- never emitted
-  , TOKEN = 9999          // <-- never emitted 
-  , BLOCK_COMMENT = 0 
+  , TOKEN = 9999          // <-- never emitted
+  , BLOCK_COMMENT = 0
   , LINE_COMMENT = 1
   , PREPROCESSOR = 2
   , OPERATOR = 3
@@ -18,7 +16,7 @@ var NORMAL = 999          // <-- never emitted
   , BUILTIN = 7
   , KEYWORD = 8
   , WHITESPACE = 9
-  , EOF = 10 
+  , EOF = 10
   , HEX = 11
 
 var map = [
@@ -37,14 +35,13 @@ var map = [
 ]
 
 function tokenize() {
-  var stream = through(write, end)
-
   var i = 0
     , total = 0
-    , mode = NORMAL 
+    , mode = NORMAL
     , c
     , last
     , content = []
+    , tokens = []
     , token_idx = 0
     , token_offs = 0
     , line = 1
@@ -55,11 +52,15 @@ function tokenize() {
     , input = ''
     , len
 
-  return stream
+  return function(data) {
+    tokens = []
+    if (data !== null) return write(data)
+    return end()
+  }
 
   function token(data) {
-    if(data.length) {
-      stream.queue({
+    if (data.length) {
+      tokens.push({
         type: map[mode]
       , data: data
       , position: start
@@ -71,7 +72,7 @@ function tokenize() {
 
   function write(chunk) {
     i = 0
-    input += chunk.toString()
+    input += chunk
     len = input.length
 
     var last
@@ -102,7 +103,8 @@ function tokenize() {
 
     total += i
     input = input.slice(i)
-  } 
+    return tokens
+  }
 
   function end(chunk) {
     if(content.length) {
@@ -111,8 +113,7 @@ function tokenize() {
 
     mode = EOF
     token('(eof)')
-
-    stream.queue(null)
+    return tokens
   }
 
   function normal() {
@@ -209,7 +210,7 @@ function tokenize() {
 
     if(c === '.' && content.length) {
       while(determine_operator(content));
-      
+
       mode = FLOAT
       return i
     }
@@ -239,11 +240,11 @@ function tokenize() {
 
     do {
       idx = operators.indexOf(buf.slice(0, buf.length + j).join(''))
-      if(idx === -1) { 
+      if(idx === -1) {
         j -= 1
         continue
       }
-      
+
       token(operators[idx])
 
       start += operators[idx].length
@@ -261,7 +262,7 @@ function tokenize() {
 
     content.push(c)
     last = c
-    return i + 1    
+    return i + 1
   }
 
   function integer() {

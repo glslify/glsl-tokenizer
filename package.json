@@ -2,7 +2,7 @@
   "name": "glsl-tokenizer",
   "version": "1.1.1",
   "description": "r/w stream of glsl tokens",
-  "main": "index.js",
+  "main": "stream.js",
   "directories": {
     "test": "test"
   },
@@ -12,7 +12,7 @@
     "Chris Dickinson <chris@neversaw.us> (http://neversaw.us)"
   ],
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/index.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
   "author": "Chris Dickinson <chris@neversaw.us>",
   "license": "MIT",
   "dependencies": {
-    "through": "X.X.X"
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "tap-spec": "^1.0.1",
+    "tape": "^3.0.2"
   }
 }

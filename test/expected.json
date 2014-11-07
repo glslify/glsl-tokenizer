@@ -1,0 +1,863 @@
+[
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 0,
+    "line": 2,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "precision",
+    "position": 1,
+    "line": 2,
+    "column": 9
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 10,
+    "line": 2,
+    "column": 10
+  },
+  {
+    "type": "keyword",
+    "data": "highp",
+    "position": 11,
+    "line": 2,
+    "column": 15
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 16,
+    "line": 2,
+    "column": 16
+  },
+  {
+    "type": "keyword",
+    "data": "int",
+    "position": 17,
+    "line": 2,
+    "column": 19
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 20,
+    "line": 2,
+    "column": 19
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 21,
+    "line": 3,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "precision",
+    "position": 22,
+    "line": 3,
+    "column": 9
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 31,
+    "line": 3,
+    "column": 10
+  },
+  {
+    "type": "keyword",
+    "data": "highp",
+    "position": 32,
+    "line": 3,
+    "column": 15
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 37,
+    "line": 3,
+    "column": 16
+  },
+  {
+    "type": "keyword",
+    "data": "float",
+    "position": 38,
+    "line": 3,
+    "column": 21
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 43,
+    "line": 3,
+    "column": 21
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 44,
+    "line": 4,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "precision",
+    "position": 45,
+    "line": 4,
+    "column": 9
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 54,
+    "line": 4,
+    "column": 10
+  },
+  {
+    "type": "keyword",
+    "data": "highp",
+    "position": 55,
+    "line": 4,
+    "column": 15
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 60,
+    "line": 4,
+    "column": 16
+  },
+  {
+    "type": "keyword",
+    "data": "vec2",
+    "position": 61,
+    "line": 4,
+    "column": 20
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 65,
+    "line": 4,
+    "column": 20
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 66,
+    "line": 5,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "precision",
+    "position": 67,
+    "line": 5,
+    "column": 9
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 76,
+    "line": 5,
+    "column": 10
+  },
+  {
+    "type": "keyword",
+    "data": "highp",
+    "position": 77,
+    "line": 5,
+    "column": 15
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 82,
+    "line": 5,
+    "column": 16
+  },
+  {
+    "type": "keyword",
+    "data": "vec3",
+    "position": 83,
+    "line": 5,
+    "column": 20
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 87,
+    "line": 5,
+    "column": 20
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 88,
+    "line": 6,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "precision",
+    "position": 89,
+    "line": 6,
+    "column": 9
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 98,
+    "line": 6,
+    "column": 10
+  },
+  {
+    "type": "keyword",
+    "data": "highp",
+    "position": 99,
+    "line": 6,
+    "column": 15
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 104,
+    "line": 6,
+    "column": 16
+  },
+  {
+    "type": "keyword",
+    "data": "vec4",
+    "position": 105,
+    "line": 6,
+    "column": 20
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 109,
+    "line": 6,
+    "column": 20
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 110,
+    "line": 7,
+    "column": 0
+  },
+  {
+    "type": "preprocessor",
+    "data": "#line 0",
+    "position": 111,
+    "line": 7,
+    "column": 7
+  },
+  {
+    "type": "whitespace",
+    "data": "\n\n",
+    "position": 118,
+    "line": 9,
+    "column": 0
+  },
+  {
+    "type": "preprocessor",
+    "data": "#define X(a) Y \\\n  asdf \\\n  barry",
+    "position": 120,
+    "line": 11,
+    "column": 7
+  },
+  {
+    "type": "whitespace",
+    "data": "\n\n",
+    "position": 153,
+    "line": 13,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "varying",
+    "position": 155,
+    "line": 13,
+    "column": 7
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 162,
+    "line": 13,
+    "column": 8
+  },
+  {
+    "type": "keyword",
+    "data": "vec2",
+    "position": 163,
+    "line": 13,
+    "column": 12
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 167,
+    "line": 13,
+    "column": 13
+  },
+  {
+    "type": "ident",
+    "data": "vTexcoord",
+    "position": 168,
+    "line": 13,
+    "column": 22
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 177,
+    "line": 13,
+    "column": 22
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 178,
+    "line": 14,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "varying",
+    "position": 179,
+    "line": 14,
+    "column": 7
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 186,
+    "line": 14,
+    "column": 8
+  },
+  {
+    "type": "keyword",
+    "data": "vec3",
+    "position": 187,
+    "line": 14,
+    "column": 12
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 191,
+    "line": 14,
+    "column": 13
+  },
+  {
+    "type": "ident",
+    "data": "vPosition",
+    "position": 192,
+    "line": 14,
+    "column": 22
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 201,
+    "line": 14,
+    "column": 22
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 202,
+    "line": 15,
+    "column": 0
+  },
+  {
+    "type": "keyword",
+    "data": "uniform",
+    "position": 203,
+    "line": 15,
+    "column": 7
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 210,
+    "line": 15,
+    "column": 8
+  },
+  {
+    "type": "keyword",
+    "data": "mat4",
+    "position": 211,
+    "line": 15,
+    "column": 12
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 215,
+    "line": 15,
+    "column": 13
+  },
+  {
+    "type": "ident",
+    "data": "proj",
+    "position": 216,
+    "line": 15,
+    "column": 17
+  },
+  {
+    "type": "operator",
+    "data": ",",
+    "position": 220,
+    "line": 15,
+    "column": 18
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 221,
+    "line": 15,
+    "column": 19
+  },
+  {
+    "type": "ident",
+    "data": "view",
+    "position": 222,
+    "line": 15,
+    "column": 23
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 226,
+    "line": 15,
+    "column": 23
+  },
+  {
+    "type": "whitespace",
+    "data": "\n \n    ",
+    "position": 227,
+    "line": 17,
+    "column": 4
+  },
+  {
+    "type": "keyword",
+    "data": "attribute",
+    "position": 234,
+    "line": 17,
+    "column": 13
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 243,
+    "line": 17,
+    "column": 14
+  },
+  {
+    "type": "keyword",
+    "data": "vec3",
+    "position": 244,
+    "line": 17,
+    "column": 18
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 248,
+    "line": 17,
+    "column": 19
+  },
+  {
+    "type": "ident",
+    "data": "position",
+    "position": 249,
+    "line": 17,
+    "column": 27
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 257,
+    "line": 17,
+    "column": 27
+  },
+  {
+    "type": "whitespace",
+    "data": "\n    ",
+    "position": 258,
+    "line": 18,
+    "column": 4
+  },
+  {
+    "type": "keyword",
+    "data": "attribute",
+    "position": 263,
+    "line": 18,
+    "column": 13
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 272,
+    "line": 18,
+    "column": 14
+  },
+  {
+    "type": "keyword",
+    "data": "vec2",
+    "position": 273,
+    "line": 18,
+    "column": 18
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 277,
+    "line": 18,
+    "column": 19
+  },
+  {
+    "type": "ident",
+    "data": "texcoord",
+    "position": 278,
+    "line": 18,
+    "column": 27
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 286,
+    "line": 18,
+    "column": 27
+  },
+  {
+    "type": "whitespace",
+    "data": "\n \n    ",
+    "position": 287,
+    "line": 20,
+    "column": 4
+  },
+  {
+    "type": "keyword",
+    "data": "void",
+    "position": 294,
+    "line": 20,
+    "column": 8
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 298,
+    "line": 20,
+    "column": 9
+  },
+  {
+    "type": "ident",
+    "data": "main",
+    "position": 299,
+    "line": 20,
+    "column": 13
+  },
+  {
+    "type": "operator",
+    "data": "(",
+    "position": 303,
+    "line": 20,
+    "column": 13
+  },
+  {
+    "type": "operator",
+    "data": ")",
+    "position": 304,
+    "line": 20,
+    "column": 14
+  },
+  {
+    "type": "operator",
+    "data": "{",
+    "position": 305,
+    "line": 20,
+    "column": 16
+  },
+  {
+    "type": "whitespace",
+    "data": "\n        ",
+    "position": 306,
+    "line": 21,
+    "column": 8
+  },
+  {
+    "type": "ident",
+    "data": "vTexcoord",
+    "position": 315,
+    "line": 21,
+    "column": 17
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 324,
+    "line": 21,
+    "column": 18
+  },
+  {
+    "type": "operator",
+    "data": "=",
+    "position": 325,
+    "line": 21,
+    "column": 19
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 326,
+    "line": 21,
+    "column": 20
+  },
+  {
+    "type": "ident",
+    "data": "texcoord",
+    "position": 327,
+    "line": 21,
+    "column": 28
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 335,
+    "line": 21,
+    "column": 28
+  },
+  {
+    "type": "whitespace",
+    "data": "\n        ",
+    "position": 336,
+    "line": 22,
+    "column": 8
+  },
+  {
+    "type": "ident",
+    "data": "vPosition",
+    "position": 345,
+    "line": 22,
+    "column": 17
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 354,
+    "line": 22,
+    "column": 18
+  },
+  {
+    "type": "operator",
+    "data": "=",
+    "position": 355,
+    "line": 22,
+    "column": 19
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 356,
+    "line": 22,
+    "column": 20
+  },
+  {
+    "type": "ident",
+    "data": "position",
+    "position": 357,
+    "line": 22,
+    "column": 28
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 365,
+    "line": 22,
+    "column": 28
+  },
+  {
+    "type": "whitespace",
+    "data": "\n        ",
+    "position": 366,
+    "line": 23,
+    "column": 8
+  },
+  {
+    "type": "builtin",
+    "data": "gl_Position",
+    "position": 375,
+    "line": 23,
+    "column": 19
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 386,
+    "line": 23,
+    "column": 20
+  },
+  {
+    "type": "operator",
+    "data": "=",
+    "position": 387,
+    "line": 23,
+    "column": 21
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 388,
+    "line": 23,
+    "column": 22
+  },
+  {
+    "type": "ident",
+    "data": "proj",
+    "position": 389,
+    "line": 23,
+    "column": 26
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 393,
+    "line": 23,
+    "column": 27
+  },
+  {
+    "type": "operator",
+    "data": "*",
+    "position": 394,
+    "line": 23,
+    "column": 28
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 395,
+    "line": 23,
+    "column": 29
+  },
+  {
+    "type": "ident",
+    "data": "view",
+    "position": 396,
+    "line": 23,
+    "column": 33
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 400,
+    "line": 23,
+    "column": 34
+  },
+  {
+    "type": "operator",
+    "data": "*",
+    "position": 401,
+    "line": 23,
+    "column": 35
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 402,
+    "line": 23,
+    "column": 36
+  },
+  {
+    "type": "keyword",
+    "data": "vec4",
+    "position": 403,
+    "line": 23,
+    "column": 40
+  },
+  {
+    "type": "operator",
+    "data": "(",
+    "position": 407,
+    "line": 23,
+    "column": 40
+  },
+  {
+    "type": "ident",
+    "data": "position",
+    "position": 408,
+    "line": 23,
+    "column": 49
+  },
+  {
+    "type": "operator",
+    "data": ",",
+    "position": 416,
+    "line": 23,
+    "column": 50
+  },
+  {
+    "type": "whitespace",
+    "data": " ",
+    "position": 417,
+    "line": 23,
+    "column": 51
+  },
+  {
+    "type": "float",
+    "data": "1.0",
+    "position": 418,
+    "line": 23,
+    "column": 54
+  },
+  {
+    "type": "operator",
+    "data": ")",
+    "position": 421,
+    "line": 23,
+    "column": 54
+  },
+  {
+    "type": "operator",
+    "data": ";",
+    "position": 422,
+    "line": 23,
+    "column": 55
+  },
+  {
+    "type": "whitespace",
+    "data": "\n    ",
+    "position": 423,
+    "line": 24,
+    "column": 4
+  },
+  {
+    "type": "operator",
+    "data": "}",
+    "position": 428,
+    "line": 24,
+    "column": 5
+  },
+  {
+    "type": "whitespace",
+    "data": "\n",
+    "position": 429,
+    "line": 25,
+    "column": 0
+  },
+  {
+    "type": "eof",
+    "data": "(eof)",
+    "position": 429,
+    "line": 25,
+    "column": 0
+  }
+]
