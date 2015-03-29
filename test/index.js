@@ -6,6 +6,7 @@ var tokenizeStream = require('../stream')
 var tokenizeString = require('../string')
 var expected = require('./expected.json')
 
+var invalid = path.join(__dirname, 'invalid-chars.glsl')
 var fixture = path.join(__dirname, 'fixture.glsl')
 
 test('glsl-tokenizer/string', function(t) {
@@ -40,4 +41,20 @@ test('glsl-tokenizer/stream', function(t) {
     t.deepEqual(tokens, expected, 'matches exactly the expected output')
     t.end()
   })
+})
+
+test('glsl-tokenizer: invalid characters', function(t) {
+    var src = fs.readFileSync(invalid, 'utf8')
+    var tokens = tokenizeString(src)
+
+    t.pass('does not hang!')
+
+    var operators = tokens.filter(function(t) {
+      return t.type === 'operator'
+    }).map(function(t) {
+      return t.data
+    }).join('')
+
+    t.equal(operators, "@{(){();}(){''}}=();.();(){=();}", 'collects all expected "operator" characters')
+    t.end()
 })

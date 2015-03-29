@@ -237,18 +237,21 @@ function tokenize() {
   function determine_operator(buf) {
     var j = 0
       , idx
+      , res
 
     do {
       idx = operators.indexOf(buf.slice(0, buf.length + j).join(''))
+      res = operators[idx]
+
       if(idx === -1) {
-        j -= 1
-        continue
+        if(j-- + buf.length > 0) continue
+        res = buf.slice(0, 1).join('')
       }
 
-      token(operators[idx])
+      token(res)
 
-      start += operators[idx].length
-      content = content.slice(operators[idx].length)
+      start += res.length
+      content = content.slice(res.length)
       return content.length
     } while(1)
   }
