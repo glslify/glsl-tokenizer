@@ -21,11 +21,11 @@ fs.createReadStream('some.glsl')
 
 # API
 
-## tokens = require('glsl-tokenizer/string')(src)
+## tokens = require('glsl-tokenizer/string')(src, [opt])
 
 Returns an array of `tokens` given the GLSL source string `src`
 
-## stream = require('glsl-tokenizer/stream')()
+## stream = require('glsl-tokenizer/stream')([opt])
 
 Emits 'data' events whenever a token is parsed with a token object as output.
 

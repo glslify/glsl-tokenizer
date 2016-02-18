@@ -8,6 +8,7 @@ var expected = require('./expected.json')
 
 var invalid = path.join(__dirname, 'invalid-chars.glsl')
 var fixture = path.join(__dirname, 'fixture.glsl')
+var fixture300es = path.join(__dirname, 'fixture-300es.glsl')
 
 test('glsl-tokenizer/string', function(t) {
   var src = fs.readFileSync(fixture, 'utf8')
@@ -20,6 +21,25 @@ test('glsl-tokenizer/string', function(t) {
   // bumping the major version.
   t.deepEqual(tokens, expected, 'matches exactly the expected output')
 
+  t.end()
+})
+
+test('version 300es', function(t) {
+  var src = fs.readFileSync(fixture300es, 'utf8')
+  var tokens = tokenizeString(src, { version: '300 es' })
+
+  t.deepEqual(tokens.filter(function (t) {
+    return t.type === 'keyword'
+  }).map(function (t) {
+    return t.data
+  }), [ 'out', 'vec4', 'in', 'vec2', 'uniform', 'usampler2DArray', 'void', 'vec4', 'vec4' ], 'matches 300es tokens')
+  
+  t.deepEqual(tokens.filter(function (t) {
+    return t.type === 'builtin'
+  }).map(function (t) {
+    return t.data
+  }), [ 'textureLod' ], 'matches 300es builtins')
+  
   t.end()
 })
 

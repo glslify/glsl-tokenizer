@@ -2,8 +2,8 @@ var tokenize = require('./index')
 
 module.exports = tokenizeString
 
-function tokenizeString(str) {
-  var generator = tokenize()
+function tokenizeString(str, opt) {
+  var generator = tokenize(opt)
   var tokens = []
 
   tokens = tokens.concat(generator(str))
