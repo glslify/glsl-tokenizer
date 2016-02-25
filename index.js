@@ -314,10 +314,10 @@ function tokenize() {
       return i + 1
     }
 
-    if(/-/.test(c)) {
-      content.push(c)
-      last = c
-      return i + 1
+    if (c === '-' && /[eE]/.test(last)) {
+      content.push(c);
+      last = c;
+      return i + 1;
     }
 
     if(/[^\d]/.test(c)) {
