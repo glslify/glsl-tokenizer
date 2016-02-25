@@ -3,8 +3,8 @@ var tokenize = require('./index')
 
 module.exports = createStream
 
-function createStream() {
-  var generator = tokenize()
+function createStream(opt) {
+  var generator = tokenize(opt)
 
   return through(write, end)
 

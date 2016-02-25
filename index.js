@@ -1,8 +1,10 @@
 module.exports = tokenize
 
-var literals = require('./lib/literals')
+var literals100 = require('./lib/literals')
   , operators = require('./lib/operators')
-  , builtins = require('./lib/builtins')
+  , builtins100 = require('./lib/builtins')
+  , literals300es = require('./lib/literals-300es')
+  , builtins300es = require('./lib/builtins-300es')
 
 var NORMAL = 999          // <-- never emitted
   , TOKEN = 9999          // <-- never emitted
@@ -34,7 +36,7 @@ var map = [
   , 'integer'
 ]
 
-function tokenize() {
+function tokenize(opt) {
   var i = 0
     , total = 0
     , mode = NORMAL
@@ -51,6 +53,14 @@ function tokenize() {
     , isoperator = false
     , input = ''
     , len
+
+  opt = opt || {}
+  var allBuiltins = builtins100
+  var allLiterals = literals100
+  if (opt.version === '300 es') {
+    allBuiltins = builtins300es
+    allLiterals = literals300es
+  }
 
   return function(data) {
     tokens = []
@@ -327,9 +337,9 @@ function tokenize() {
   function readtoken() {
     if(/[^\d\w_]/.test(c)) {
       var contentstr = content.join('')
-      if(literals.indexOf(contentstr) > -1) {
+      if(allLiterals.indexOf(contentstr) > -1) {
         mode = KEYWORD
-      } else if(builtins.indexOf(contentstr) > -1) {
+      } else if(allBuiltins.indexOf(contentstr) > -1) {
         mode = BUILTIN
       } else {
         mode = IDENT

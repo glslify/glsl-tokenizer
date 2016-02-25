@@ -21,13 +21,23 @@ fs.createReadStream('some.glsl')
 
 # API
 
-## tokens = require('glsl-tokenizer/string')(src)
+## tokens = require('glsl-tokenizer/string')(src, [opt])
 
 Returns an array of `tokens` given the GLSL source string `src`
 
-## stream = require('glsl-tokenizer/stream')()
+You can specify `opt.version` string to use different keywords/builtins, such as `'300 es'` for WebGL2. Otherwise, will assume GLSL 100 (WebGL1).
+
+```js
+var tokens = tokenizer(src, {
+  version: '300 es'
+})
+```
+
+## stream = require('glsl-tokenizer/stream')([opt])
 
 Emits 'data' events whenever a token is parsed with a token object as output.
+
+As above, you can specify `opt.version`.
 
 # Tokens
 
