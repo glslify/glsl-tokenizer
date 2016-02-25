@@ -78,3 +78,22 @@ test('glsl-tokenizer: invalid characters', function(t) {
     t.equal(operators, "@{(){();}(){''}}=();.();(){=();}", 'collects all expected "operator" characters')
     t.end()
 })
+
+test('floats: should recognize negative exp', function (t) {
+  var src = '3.0e-2';
+  var tokens = tokenizeString(src);
+
+  t.deepEqual(tokenizeString('3.0e-2'), [
+    { column: 6, data: '3.0e-2', line: 1, position: 0, type: 'float' },
+    { column: 6, data: '(eof)', line: 1, position: 0, type: 'eof' }
+  ]);
+
+  t.deepEqual(tokenizeString('3.0-2.0'), [
+    { type: 'float', data: '3.0', position: 0, line: 1, column: 3 },
+    { type: 'operator', data: '-', position: 3, line: 1, column: 4 },
+    { type: 'float', data: '2.0', position: 4, line: 1, column: 7 },
+    { type: 'eof', data: '(eof)', position: 4, line: 1, column: 7 }
+  ]);
+
+  t.end();
+});

@@ -324,11 +324,18 @@ function tokenize(opt) {
       return i + 1
     }
 
+    if (c === '-' && /[eE]/.test(last)) {
+      content.push(c)
+      last = c
+      return i + 1
+    }
+
     if(/[^\d]/.test(c)) {
       token(content.join(''))
       mode = NORMAL
       return i
     }
+
     content.push(c)
     last = c
     return i + 1
