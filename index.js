@@ -315,9 +315,9 @@ function tokenize() {
     }
 
     if (c === '-' && /[eE]/.test(last)) {
-      content.push(c);
-      last = c;
-      return i + 1;
+      content.push(c)
+      last = c
+      return i + 1
     }
 
     if(/[^\d]/.test(c)) {
