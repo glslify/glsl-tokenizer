@@ -9,6 +9,15 @@ var expected = require('./expected.json')
 var invalid = path.join(__dirname, 'invalid-chars.glsl')
 var fixture = path.join(__dirname, 'fixture.glsl')
 
+test('floats', function (t) {
+  var src = '3.0e-2';
+  var tokens = tokenizeString(src);
+
+  console.log(tokens);
+
+  t.end();
+});
+
 test('glsl-tokenizer/string', function(t) {
   var src = fs.readFileSync(fixture, 'utf8')
   var tokens = tokenizeString(src)
