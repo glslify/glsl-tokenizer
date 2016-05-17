@@ -64,7 +64,7 @@ function tokenize(opt) {
 
   return function(data) {
     tokens = []
-    if (data !== null) return write(data)
+    if (data !== null) return write(data.replace ? data.replace(/\r\n/g, '\n') : data)
     return end()
   }
 
@@ -175,7 +175,7 @@ function tokenize(opt) {
   }
 
   function preprocessor() {
-    if(c === '\n' && last !== '\\') {
+    if((c === '\r' || c === '\n') && last !== '\\') {
       token(content.join(''))
       mode = NORMAL
       return i
