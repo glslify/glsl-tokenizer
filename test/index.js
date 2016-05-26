@@ -8,6 +8,7 @@ var expected = require('./expected.json')
 
 var invalid = path.join(__dirname, 'invalid-chars.glsl')
 var fixture = path.join(__dirname, 'fixture.glsl')
+var fixtureWindows = path.join(__dirname, 'fixture-windows.glsl')
 var fixture300es = path.join(__dirname, 'fixture-300es.glsl')
 
 test('glsl-tokenizer/string', function(t) {
@@ -20,6 +21,20 @@ test('glsl-tokenizer/string', function(t) {
   // If this test fails, then you'll probably want to consider
   // bumping the major version.
   t.deepEqual(tokens, expected, 'matches exactly the expected output')
+
+  t.end()
+})
+
+test('glsl-tokenizer/string windows carriage returns', function(t) {
+  var src = fs.readFileSync(fixtureWindows, 'utf8')
+  var tokens = tokenizeString(src)
+
+  t.ok(Array.isArray(tokens), 'returns an array of tokens')
+  t.ok(tokens.length, 'length is above 0')
+
+  t.equal(tokens[0].data, '#define PHYSICAL');
+  // upstream in stackgl/headless-gl
+  t.equal(tokens[0].data.match(/^\s*\#\s*(.*)$/)[1], 'define PHYSICAL');
 
   t.end()
 })
