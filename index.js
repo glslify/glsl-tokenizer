@@ -62,6 +62,15 @@ function tokenize(opt) {
     allLiterals = literals300es
   }
 
+  // cache by name
+  var builtinsDict = {}, literalsDict = {}
+  for (var i = 0; i < allBuiltins.length; i++) {
+    builtinsDict[allBuiltins[i]] = true
+  }
+  for (var i = 0; i < allLiterals.length; i++) {
+    literalsDict[allLiterals[i]] = true
+  }
+
   return function(data) {
     tokens = []
     if (data !== null) return write(data)
@@ -348,9 +357,9 @@ function tokenize(opt) {
   function readtoken() {
     if(/[^\d\w_]/.test(c)) {
       var contentstr = content.join('')
-      if(allLiterals.indexOf(contentstr) > -1) {
+      if(literalsDict[contentstr]) {
         mode = KEYWORD
-      } else if(allBuiltins.indexOf(contentstr) > -1) {
+      } else if(builtinsDict[contentstr]) {
         mode = BUILTIN
       } else {
         mode = IDENT
