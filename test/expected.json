@@ -813,50 +813,50 @@
   },
   {
     "type": "float",
-    "data": "1.0",
+    "data": "1e+0",
     "position": 418,
     "line": 23,
-    "column": 54
+    "column": 55
   },
   {
     "type": "operator",
     "data": ")",
-    "position": 421,
-    "line": 23,
-    "column": 54
-  },
-  {
-    "type": "operator",
-    "data": ";",
     "position": 422,
     "line": 23,
     "column": 55
   },
   {
+    "type": "operator",
+    "data": ";",
+    "position": 423,
+    "line": 23,
+    "column": 56
+  },
+  {
     "type": "whitespace",
     "data": "\n    ",
-    "position": 423,
+    "position": 424,
     "line": 24,
     "column": 4
   },
   {
     "type": "operator",
     "data": "}",
-    "position": 428,
+    "position": 429,
     "line": 24,
     "column": 5
   },
   {
     "type": "whitespace",
     "data": "\n",
-    "position": 429,
+    "position": 430,
     "line": 25,
     "column": 0
   },
   {
     "type": "eof",
     "data": "(eof)",
-    "position": 429,
+    "position": 430,
     "line": 25,
     "column": 0
   }
