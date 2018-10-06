@@ -20,5 +20,5 @@ uniform mat4 proj, view;
     void main(){
         vTexcoord = texcoord;
         vPosition = position;
-        gl_Position = proj * view * vec4(position, 1.0);
+        gl_Position = proj * view * vec4(position, 1e+0);
     }
