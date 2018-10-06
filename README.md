@@ -1,4 +1,4 @@
-# glsl-tokenizer
+# glsl-tokenizer [![Build Status](https://travis-ci.org/glslify/glsl-tokenizer.svg?branch=master)](https://travis-ci.org/glslify/glsl-tokenizer)
 
 Maps GLSL string data into GLSL tokens, either synchronously or using a
 streaming API.
